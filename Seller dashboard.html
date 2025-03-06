@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+           
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            background-image: url('./images/Hom.png');
+        }
+        h2 {
+            color: #333;
+        }
+        .dashboard-container {
+            max-width: 700px;
+            margin: auto;
+            margin-top: 3%;
+           
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .section {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 8px;
+           
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .product-container, .order-container {
+            display: flex;
+            
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .product-card, .order-card {
+           background-color: aliceblue;
+            padding: 10px;
+            box-shadow: 0px 2px 6px rgba(0, 255, 55, 0.2);
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+        }
+        .product-card img, .order-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .product-card h3, .product-card p, .order-card h3, .order-card p {
+            margin: 8px 0;
+        }
+        .btn {
+            padding: 8px 12px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .edit-btn {
+            background-color: #fedc00;
+            color: black;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        .complete-btn {
+            background-color: #048121;
+            color: white;
+        }
+        .add-product-btn {
+            background-color: #07b547;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<h2>seller-dashboard</h2>
+    <div class="dashboard-container">
+        
+        <div class="section">
+            <h3>🛍️ Manage Products</h3>
+            <div class="product-container" id="productContainer">
+                <div class="product-card">
+                    <img src="./images/584ec536bae5ed191a5450d8fc2f274c.jpg" alt="Product">
+                    <h3>Poori with Chicken</h3>
+                    <p>₹150</p>
+                    <button class="btn edit-btn" onclick="editProduct(this)">Edit</button>
+                    <button class="btn delete-btn" onclick="deleteProduct(this)">Delete</button>
+                </div>
+            </div>
+            <button class="add-product-btn" onclick="addProduct()">➕ Add Product</button>
+       
+</div>
+       
+        <div class="container">
+            <h3>📦 Manage Orders</h3>
+            <div class="order-container" id="orderContainer">
+                <div class="order-card">
+                    <img src="./images/semiya-payasam.jpg">
+                    <h3>Order #1001</h3>
+                    <p>Food-item: Semiya Gheer</p>
+                    <p>Customer: Afreen</p>
+                    <p>Status: <strong>Pending</strong></p>
+                    <button class="btn complete-btn" onclick="completeOrder(this)">Mark as Completed</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function deleteProduct(button) {
+            button.parentElement.remove();
+            alert("Product deleted successfully!");
+        }
+
+        function editProduct(button) {
+            let productCard = button.parentElement;
+            let productName = productCard.querySelector("h3");
+            let productPrice = productCard.querySelector("p");
+
+            let newName = prompt("Enter new product name:", productName.textContent);
+            let newPrice = prompt("Enter new price (₹):", productPrice.textContent.replace("₹", ""));
+
+            if (newName) productName.textContent = newName;
+            if (newPrice) productPrice.textContent = "₹" + newPrice;
+        }
+
+        function addProduct() {
+            let productContainer = document.getElementById("productContainer");
+
+            let newName = prompt("Enter new product name:");
+            let newPrice = prompt("Enter product price (₹):");
+            let newImageURL = prompt("Enter image URL:");
+
+            if (newName && newPrice && newImageURL) {
+                let newProduct = document.createElement("div");
+                newProduct.classList.add("product-card");
+                newProduct.innerHTML = `
+                    <img src="${newImageURL}" alt="${newName}">
+                    <h3>${newName}</h3>
+                    <p>₹${newPrice}</p>
+                    <button class="btn edit-btn" onclick="editProduct(this)">Edit</button>
+                    <button class="btn delete-btn" onclick="deleteProduct(this)">Delete</button>
+                `;
+                productContainer.appendChild(newProduct);
+                alert("Product added successfully!");
+            } else {
+                alert("Please enter valid product details!");
+            }
+        }
+
+        function completeOrder(button) {
+            let orderCard = button.parentElement;
+            let statusText = orderCard.querySelector("p:nth-child(5)");
+            statusText.innerHTML = "Status: <strong style='color: green;'>Completed</strong>";
+            button.remove();
+            alert("Order marked as completed!");
+        }
+    </script>
+
+</body>
+</html>
+

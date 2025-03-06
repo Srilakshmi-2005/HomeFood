@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>🎉 Order Confirmed! 🎉</h1>
+        
+        <a href="Home.html" class="back-home">Back to Home</a>
+    </div>
+
+    <script>
+        // Fetch order details from localStorage
+        let order = JSON.parse(localStorage.getItem("orderDetails"));
+
+        if (!order) {
+            document.getElementById("orderDetails").innerHTML = "<p>No order details found.</p>";
+        } else {
+            document.getElementById("orderDetails").innerHTML = `
+                <p><b>Food Item:</b> ${order.food}</p>
+                <p><b>Quantity:</b> ${order.quantity}</p>
+                <p><b>Delivery Address:</b> ${order.address}</p>
+                <p><b>Payment Method:</b> ${order.paymentMethod}</p>
+                <p><b>Order ID:</b> <span style="color: green; font-weight: bold;">#${order.orderID}</span></p>
+            `;
+        }
+    </script>
+</body>
+</html>
+

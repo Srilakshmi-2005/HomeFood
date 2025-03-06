@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .payment-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+        .payment-container h2 {
+            margin-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .pay-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: green;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Payment</h2>
+        <p>Complete your payment securely</p>
+        <form id="paymentForm">
+            <div class="form-group">
+                <label for="paymentMethod">Payment Method</label>
+                <select id="paymentMethod" required>
+                    <option value="">Select Payment Method</option>
+                    <option value="credit">Credit Card</option>
+                    <option value="debit">Debit Card</option>
+                    <option value="upi">UPI</option>
+                    <option value="Cash">Cash on delivery</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="cardDetails" style="display: none;">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                <label for="expiryDate">Expiry Date</label>
+                <input type="month" id="expiryDate">
+                <label for="cvv">CVV</label>
+                <input type="password" id="cvv" placeholder="***">
+            </div>
+            
+            <div class="form-group" id="upiDetails" style="display: none;">
+                <label for="upiId">UPI ID</label>
+                <input type="text" id="upiId" placeholder="example@upi">
+            </div>
+            
+            <button type="submit" class="pay-btn">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("paymentMethod").addEventListener("change", function () {
+            let selectedMethod = this.value;
+            document.getElementById("cardDetails").style.display = (selectedMethod === "credit" || selectedMethod === "debit") ? "block" : "none";
+            document.getElementById("upiDetails").style.display = (selectedMethod === "upi") ? "block" : "none";
+        });
+
+        document.getElementById("paymentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Payment Successful!");
+            window.location.href = "confirmation.html";
+        });
+    </script>
+</body>
+</html>

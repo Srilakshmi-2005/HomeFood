@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details Page</title>
+    <link rel="stylesheet" href="Style.css"
+</head>
+<body>
+    <div class="details-container">
+        <h2>Order Details</h2>
+        <form id="detailsForm">
+            <div class="form-group">
+                <label for="quantity">Quantity of Food</label>
+                <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Delivery Address</label>
+                <textarea id="address" name="address" rows="3" placeholder="Enter delivery address" required></textarea>
+            </div>
+            <a href="payment.html"><button type="submit" class="next-btn">Next</button></a>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('detailsForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const quantity = document.getElementById('quantity').value;
+            const address = document.getElementById('address').value;
+            
+            if (quantity === '' || address === '') {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            alert('Details saved! Proceeding to the next step.');
+            window.location.href = 'payment.html';
+        });
+    </script>
+</body>
+</html>

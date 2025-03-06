@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Home Feast</title>
+    <link rel="stylesheet" href="Style.css">
+    <script>
+        function loginUser(userType) {
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
+
+    if (username === '' || password === '') {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    if (userType === 'buyer') {
+        alert(`Welcome, ${username}! You are logged in as a Buyer.`);
+        // Redirect to buyer dashboard (update the path accordingly)
+        window.location.href = "buyer-dashboard.html";
+    } else if (userType === 'seller') {
+        alert(`Welcome, ${username}! You are logged in as a Seller.`);
+        // Redirect to seller dashboard (update the path accordingly)
+        window.location.href = "seller-dashboard.html";
+    }
+}
+
+    </script>
+</head>
+<body><div class="hi">
+      
+    <nav class="navbar">
+        <img src="./images/H-removebg-preview (1).png" alt="Website Logo" class="logo" width="00px" height="700px">
+
+        <ul>
+            <li> <a href="Home.html" class="nav-link" id="home">HOME</a></li>
+            <li> <a href="about.html" class="nav-link" id="About">ABOUT</a></li>
+            <li> <a href="menu.html" class="nav-link" id="Education">MENU</a></li>
+            <li> <a href="contact.html" class="nav-link" id="Contact">CONTACT</a></li>
+        </ul>
+    </nav>
+</div>
+   
+
+    
+    <div class="login-container">
+        <h2>Login</h2>
+        <p class="login-subtitle">Welcome back! Please login to continue.</p>
+
+        
+        <form id="loginForm">
+            <div class="input-box">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+            </div>
+
+            <div class="input-box">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+
+           
+            <div class="login-options">
+               <a href="menu.html"><button type="button" class="btn buyer-btn" onclick="loginUser('buyer')">Login as Buyer</button></a>
+               <a href="Seller dashboard.html"><button type="button" class="btn buyer-btn" onclick="loginUser('seller')">Login as seller</button></a>  
+                
+            </div>
+
+          
+            <p class="register-link">Don't have an account? <a href="register.html">Register here</a></p>
+        </form>
+    </div>
+
+
+</body>
+</html>
